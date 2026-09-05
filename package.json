@@ -1,0 +1,69 @@
+{
+  "name": "kokoro4",
+  "version": "1.0.0",
+  "type": "module",
+  "exports": {
+    "types": "./types/kokoro.d.ts",
+    "node": {
+      "import": "./dist/kokoro.js",
+      "require": "./dist/kokoro.cjs"
+    },
+    "default": "./dist/kokoro.js"
+  },
+  "scripts": {
+    "build": "rm -rf dist types && rollup -c && tsc",
+    "format": "prettier --write . --print-width 1000",
+    "test": "vitest run",
+    "prepare": "npm run build"
+  },
+  "keywords": [
+    "kokoro",
+    "tts",
+    "text-to-speech"
+  ],
+  "author": {
+    "name": "hexgrad",
+    "email": "hello@hexgrad.com"
+  },
+  "browser": {
+    "path": false,
+    "fs/promises": false
+  },
+  "contributors": [
+    "Xenova"
+  ],
+  "license": "Apache-2.0",
+  "description": "Kokoro text-to-speech for Node.js and the browser, powered by Transformers.js v4",
+  "dependencies": {
+    "@huggingface/transformers": "^4.2.0",
+    "phonemizer": "^1.2.1"
+  },
+  "devDependencies": {
+    "@rollup/plugin-node-resolve": "^16.0.0",
+    "@rollup/plugin-terser": "^0.4.4",
+    "prettier": "3.4.2",
+    "rollup": "^4.30.1",
+    "typescript": "^5.7.3",
+    "vitest": "^3.1.2"
+  },
+  "files": [
+    "types",
+    "dist",
+    "voices",
+    "README.md",
+    "LICENSE"
+  ],
+  "homepage": "https://github.com/alyjam-labs/kokoro4#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alyjam-labs/kokoro4.git"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "jsdelivr": "./dist/kokoro.web.js",
+  "unpkg": "./dist/kokoro.web.js",
+  "bugs": {
+    "url": "https://github.com/alyjam-labs/kokoro4/issues"
+  }
+}
