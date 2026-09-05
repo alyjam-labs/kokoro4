@@ -1,4 +1,7 @@
-import { phonemize as espeakng } from "phonemizer";
+import "./stream-compat.js";
+
+// Load after the stream fallback runs, including when bundlers hoist imports.
+let phonemizerPromise;
 
 /**
  * Helper function to split a string on a regex, but keep the delimiters.
@@ -172,6 +175,7 @@ const PUNCTUATION_PATTERN = new RegExp(`(\\s*[${escapeRegExp(PUNCTUATION)}]+\\s*
  * @returns {Promise<string>} The phonemized text
  */
 export async function phonemize(text, language = "a", norm = true) {
+  const { phonemize: espeakng } = await (phonemizerPromise ??= import("phonemizer"));
   // 1. Normalize text
   if (norm) {
     text = normalize_text(text);

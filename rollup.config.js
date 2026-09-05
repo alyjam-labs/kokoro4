@@ -35,7 +35,7 @@ export default OUTPUT_CONFIGS.map((output) => {
   const web = output.file.endsWith(".web.js");
   return {
     input: "./src/kokoro.js",
-    output,
+    output: { ...output, inlineDynamicImports: true },
     plugins: plugins(web),
     ...(web ? WEB_SPECIFIC_CONFIG : NODE_SPECIFIC_CONFIG),
   };
